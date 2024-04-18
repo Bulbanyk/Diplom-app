@@ -4,16 +4,16 @@ import ModalHeader from "../../components/layout/ModalHeader.jsx";
 import {colors} from "../../theme.js";
 
 
-const CreateBoardModal = () => {
+const CreateBoardModal = ({ closeModal }) => {
     const [name, setName] = useState('')
     const [color, setColor] = useState(0)
 
     return (
-        <Dialog open fullWidth maxWidth="xs">
+        <Dialog open onClose={closeModal} fullWidth maxWidth="xs">
             <Stack p={2}>
-                <ModalHeader title="Create Board"/>
+                <ModalHeader onClose={closeModal} title="Create Board"/>
                 <Stack my={5} spacing={3}>
-                    <TextField
+                    <TextFieldC
                         value={name}
                         onChange={e => setName(e.target.value)}
                         label="Board name"/>

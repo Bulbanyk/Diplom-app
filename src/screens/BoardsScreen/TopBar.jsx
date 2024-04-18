@@ -4,7 +4,7 @@ import ImageEl from "../../components/utils/ImageEl.jsx";
 import LogoImg from "../../assets/logo.svg"
 import LogoutIcon from "@mui/icons-material/ExitToApp.js"
 
-const TopBar = () => {
+const TopBar = ({openModal}) => {
     return (
         <AppBar position="static">
             <Toolbar sx={{
@@ -14,7 +14,9 @@ const TopBar = () => {
                     height: "25px",
                 }} src={LogoImg} alt="FlowBoard" />
                 <Stack direction="row" spacing={2}>
-                    <Button variant="contained">Create board</Button>
+                    <Button onClick={openModal} variant="contained">
+                        Create board
+                    </Button>
                     <Button startIcon={<LogoutIcon />} color="inherit">
                         Logout
                     </Button>
