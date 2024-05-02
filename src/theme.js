@@ -9,7 +9,6 @@ export const colors = [
     "#D3D3D3"
 ];
 
-
 const theme = createTheme({
     palette: {
         mode: 'dark',
@@ -19,6 +18,29 @@ const theme = createTheme({
         primary: {
             main:'#BEA4FF'
         }
+    },
+    components: {
+        MuiIconButton: {
+          defaultProps: {
+              size: 'small'
+          }
+        },
+      MuiSnackbar: {
+          defaultProps: {
+              anchorOrigin: {
+                  vertical: 'top',
+                  horizontal: 'center',
+              },
+          },
+      },
+        MuiSnackbarContent: {
+          styleOverrides: {
+              message: {
+                  fontWeight: 600,
+                  textTransform: "capitalize",
+              },
+          },
+        },
     },
     typography: {
         fontFamily: 'Lato, sans-serif',
@@ -36,7 +58,6 @@ const theme = createTheme({
     shape: {
         borderRadius: 0
     }
-
 });
 
 export default theme

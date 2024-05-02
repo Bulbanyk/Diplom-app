@@ -3,6 +3,8 @@ import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyASx-9W47nbpdX-lYt3MXh4--74V3zbJbs",
     authDomain: "diplombulat.firebaseapp.com",

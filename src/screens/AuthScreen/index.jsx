@@ -3,7 +3,12 @@ import { Container, Stack, TextField, Button, Typography } from '@mui/material'
 import LogoImg from "../../assets/logo.svg"
 import ImageEl from "../../components/utils/ImageEl.jsx";
 import {auth} from "../../firebase.js";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"
+import { signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
+} from "firebase/auth"
+import useStore from "../../store.js";
+
+
 
 const initForm = {
     email: "",
@@ -13,7 +18,8 @@ const AuthScreen = () => {
     const [loading, setLoading] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
     const [form, setForm] = useState(initForm);
-
+    const { setToastr } = useStore()
+    
     const authText = isLogin
         ? "Do not have an account?"
         : "Already have an account?";
@@ -35,7 +41,7 @@ const AuthScreen = () => {
             }
         } catch(err){
             const msg = err.code.split('auth/')[1].split('-').join(' ')
-            console.log(msg);
+            setToastr(msg);
             setLoading(false);
         }
     };
