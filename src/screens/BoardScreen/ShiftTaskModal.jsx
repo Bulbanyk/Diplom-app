@@ -1,37 +1,61 @@
 import {useState} from "react";
-import {Dialog, Typography, Stack, Chip, Button} from '@mui/material';
+import {Dialog, Typography, Stack, Chip, Button, TextField} from '@mui/material';
 import ModalHeader from "../../components/layout/ModalHeader.jsx";
-import {statusMap} from "./BoardInterface.jsx";
+import {priorityMap, statusMap} from "./BoardInterface.jsx";
 
 
-const ShiftTaskModal = ({onClose, task, shiftTask}) => {
+const ShiftTaskModal = ({onClose, task, shiftTask, priority}) => {
   const [taskStatus, setTaskStatus] = useState(task.status)
+  //Новое поле
+/*
+  const [priorityStatus, setPriorityStatus] = useState(priority.status)
+*/
+  
   return (
     <Dialog open fullWidth maxWidth="xs">
       <Stack p={2}>
-        <ModalHeader title="Shift task" onClose={onClose} />
+        <ModalHeader title="Изменить задачу" onClose={onClose} />
         <Stack my={3} spacing={3}>
           <Stack spacing={1}>
-            <Typography>Task: </Typography>
-            <Typography p={1.5} bgcolor="#45474E">
-              {task.text}
-            </Typography>
+            
+            <Typography>Задача: </Typography>
+            <TextField
+              p={1.5}
+              bgcolor="#45474E"
+              value={task.text}
+            >
+            
+            </TextField>
+            
           </Stack>
           <Stack spacing={1}>
-          <Typography>Status</Typography>
-          <Stack direction='row' spacing={1}>
-            {Object.entries(statusMap).map(([status, label]) => (
-              <Chip
-                onClick={() => setTaskStatus(status)}
-                variant={taskStatus === status ? "filled" : "outlined"}
-                key={status}
-                label={label}
-              />
-            ))}
+            <Typography>Статус</Typography>
+              <Stack direction='row' spacing={1}>
+                {Object.entries(statusMap).map(([status, label]) => (
+                  <Chip
+                    onClick={() => setTaskStatus(status)}
+                    variant={taskStatus === status ? "filled" : "outlined"}
+                    key={status}
+                    label={label}
+                  />
+                ))}
+              </Stack>
           </Stack>
+          {/*<Stack>
+            <Typography>Приоритет</Typography>
+            <Stack direction="row" spacing={1}>
+              {Object.entries(priorityMap).map(([status, label]) => (
+                <Chip
+                  onClick={() => setPriorityStatus(status)}
+                  variant={priorityStatus === status ? "filled" : "outlined"}
+                  key={status}
+                  label={label}
+                />
+              ))}
+            </Stack>
+          </Stack>*/}
         </Stack>
-        </Stack>
-        <Button onClick={() => shiftTask(taskStatus)} variant="contained">Shift Task</Button>
+        <Button onClick={() => shiftTask(taskStatus)} variant="contained">Изменить задачу</Button>
       </Stack>
     </Dialog>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Stack, TextField, Button, Typography } from '@mui/material'
+import {Container, Stack, TextField, Button, Typography, IconButton, InputAdornment} from '@mui/material'
 import LogoImg from "../../assets/logo.svg"
 import ImageEl from "../../components/utils/ImageEl.jsx";
 import {auth} from "../../firebase.js";
@@ -7,6 +7,8 @@ import { signInWithEmailAndPassword,
     createUserWithEmailAndPassword
 } from "firebase/auth"
 import useStore from "../../store.js";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'; //Иконка скрытия пароля
+import VisibilityIcon from '@mui/icons-material/Visibility'; //Иконка показать пароль
 
 
 
@@ -17,12 +19,14 @@ const initForm = {
 const AuthScreen = () => {
     const [loading, setLoading] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
+    const [showPassword, setShowPassword] = useState(false); // Состояние для отслеживания видимости  пароля
     const [form, setForm] = useState(initForm);
     const { setToastr } = useStore()
     
+    
     const authText = isLogin
-        ? "Do not have an account?"
-        : "Already have an account?";
+        ? "Нет аккаунта?"
+        : "Уже есть аккаунт?";
 
     const handleChange = event =>
         setForm(oldForm => ({
@@ -45,18 +49,24 @@ const AuthScreen = () => {
             setLoading(false);
         }
     };
+    //Показать пароль
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword); // Изменяем состояние для показа/скрытия пароля
+    };
+    //Показать пароль
+    
     return (
     <Container
         maxWidth="xs"
         sx={{
-        mt: 10
+        mt: 8
     }}>
-        <Stack mb={6} spacing={4} alignItems='center' textAlign='center'>
-            <ImageEl src={LogoImg} alt="FlowBoard"/>
+        <Stack mb={5} spacing={4} alignItems='center' textAlign='center'>
+            <ImageEl src={LogoImg} alt="Logo" width="25%"/>
             <Typography color="rgba(255,255,255, .6)">
-                Visualize Your workflow for Increased Productivity.
+                Визуализируйте свой рабочий процесс для повышения производительности.
                 <br />
-                Access Your Tasks Anytime, Anywhere.
+                Доступ к вашим задачам в любое время и в любом месте
             </Typography>
         </Stack>
         <Stack spacing={2}>
@@ -66,11 +76,23 @@ const AuthScreen = () => {
                 onChange={handleChange}
                 label="Email"
             />
+            
             <TextField
                 value={form.password}
                 name="password"
+                type={showPassword ? "text" : "password"} // Показываем пароль, если showPassword === true
                 onChange={handleChange}
-                label="Password"
+                label="Пароль"
+                InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                          <IconButton onClick={handleClickShowPassword} edge="end">
+                              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                          </IconButton>
+                      </InputAdornment>
+                    ),
+                }}
+            
             />
             <Button
                 disabled={loading || !form.email.trim() || !form.password.trim()}
@@ -78,7 +100,7 @@ const AuthScreen = () => {
                 size = "large"
                 variant="contained"
             >
-                {isLogin ? "Login" : "Register"}
+                {isLogin ? "Войти" : "Зарегестрироваться"}
             </Button>
         </Stack>
         <Typography

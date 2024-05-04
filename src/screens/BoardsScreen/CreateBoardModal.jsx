@@ -15,8 +15,8 @@ const CreateBoardModal = ({ closeModal }) => {
   
   const handleCreate = async () => {
     const tName = name.trim()
-    if (!tName) return setToastr('You need to enter board name');
-    if (name.length > 20) return setToastr('Board name cannot be more 20 characters');
+    if (!tName) return setToastr('Введите имя доски');
+    if (name.length > 20) return setToastr('В названии должно быть меньше 20 символов');
     try {
       setLoading(true);
       await createBoard({name: tName, color});
@@ -30,15 +30,15 @@ const CreateBoardModal = ({ closeModal }) => {
     return (
       <Dialog open onClose={closeModal} fullWidth maxWidth="xs">
         <Stack p={2}>
-          <ModalHeader onClose={closeModal} title="Create Board"/>
+          <ModalHeader onClose={closeModal} title="Создать доску"/>
           <Stack my={5} spacing={3}>
             <TextField
               value={name}
               onChange={e => setName(e.target.value)}
-              label="Board name"
+              label="Название доски"
             />
             <Stack spacing={1.5} direction="row">
-              <Typography>Color:</Typography>
+              <Typography>Цвет:</Typography>
               {colors.map((clr, idx) =>
                 <Box
                   sx={{
@@ -58,7 +58,7 @@ const CreateBoardModal = ({ closeModal }) => {
           <Button
             disabled={loading}
             onClick={handleCreate} variant="contained" size="large">
-            Create
+            Создать
           </Button>
         </Stack>
       </Dialog>

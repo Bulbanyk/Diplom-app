@@ -31,7 +31,7 @@ const BoardTopbar = ({name, lastUpdated, color, deleteBoard}) => {
           <Typography display={{
             xs: 'none',
             sm: 'block',
-          }} variant = "body2">Last updated: {lastUpdated}</Typography>
+          }} variant = "body2">Последнее обновление: {lastUpdated}</Typography>
           <IconButton onClick={deleteBoard}>
             <DeleteIcon />
           </IconButton>

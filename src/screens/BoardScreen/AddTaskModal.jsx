@@ -3,33 +3,77 @@ import {
   Dialog,
   Typography,
   Stack,
-  IconButton,
   Chip,
   OutlinedInput,
-  Button,
+  Button, InputLabel, Select, MenuItem,
   
 } from "@mui/material"
-import CloseIcon from "@mui/icons-material/Close"
 import ModalHeader from "../../components/layout/ModalHeader.jsx";
 
+//New code
+import {priorityMap} from "./BoardInterface.jsx";
+import * as React from 'react';
 
-const AddTaskModal = ({ tabName, onClose, addTask, loading }) => {
+
+
+
+const AddTaskModal = ({ tabName, onClose, addTask }) => {
+    const [primary, setPrimary] = useState('');
+    const handleChange = (event) => {
+      setPrimary(String(event.target.value))
+    };
+    
   const [text, setText] = useState('')
+  
   return (
     <Dialog open onClose={onClose} fullWidth maxWidth='xs'>
       <Stack p={2}>
-        <ModalHeader title="Add task" onClose={onClose} />
+        <ModalHeader title="Добавить задачу" onClose={onClose} />
         <Stack mt={3} spacing={2}>
-          <Stack direction='row' alignItems='center' spacing={1}>
-              <Typography>Status:</Typography>
+          <Stack direction='row' alignItems='center' spacing={2}>
+              <Typography>Статус:</Typography>
               <Chip size="small" label={tabName} />
           </Stack>
-            <OutlinedInput value={text} onChange={e => setText(e.target.value)} placeholder="Task" />
+          {/*Новый код*/}
+          <Stack >
+              <InputLabel id="demo-simple-select-label">Приоритет</InputLabel>
+              <Select
+                size="small"
+                
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={primary}
+                label="Primay"
+                onChange={handleChange}
+              >
+                <MenuItem
+                  value="redStatus"
+                  sx={{bgcolor: "#B20000",color:"#fff", fontWeight:"700", }}
+                >
+                  Красный
+                </MenuItem>
+                
+                <MenuItem
+                  value="yellowStatus"
+                  sx={{bgcolor: "#FFFF00",color: "#000", fontWeight:"700", }}
+                >
+                  Жёлтый
+                </MenuItem>
+                
+                <MenuItem
+                  value="greenStatus"
+                  sx={{bgcolor: "#0a5c0a",color: "#fff", fontWeight:"700", }}
+                >
+                  Зелёный
+                </MenuItem>
+              </Select>
+          </Stack>
+            <OutlinedInput value={text} onChange={e => setText(e.target.value)} placeholder="Задача" />
             <Button
                     onClick={() => addTask(text)}
                     vatiant='contained'
             >
-              Add Task
+              Добавить задачу
             </Button>
         </Stack>
       </Stack>

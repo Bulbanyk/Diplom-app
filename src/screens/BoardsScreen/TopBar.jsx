@@ -43,14 +43,14 @@ const Topbar = ({ openModal }) => {
           ) : (
             <>
               <Button onClick={openModal} variant="contained">
-                Create board
+                Создать доску
               </Button>
               <Button
                 onClick={() => signOut(auth)}
                 startIcon={<LogoutIcon />}
                 color="inherit"
               >
-                Logout
+                Выйти
               </Button>
             </>
           )}

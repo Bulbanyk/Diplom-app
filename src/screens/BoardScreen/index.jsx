@@ -20,7 +20,7 @@ const BoardScreen = () => {
   const boardData = useMemo(() => data, [data])
   
   const handleDeleteBoard = useCallback(async () => {
-    if (!window.confirm('Do you want to delete this board?')) return;
+    if (!window.confirm('Вы действительно хотите удалить эту доску?')) return;
     try {
       setLoading(true);
       await deleteBoard(boardId)

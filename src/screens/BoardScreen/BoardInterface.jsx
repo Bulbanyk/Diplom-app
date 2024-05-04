@@ -9,12 +9,17 @@ import AppLoader from "../../components/layout/AppLoader.jsx";
 import ShiftTaskModal from "./ShiftTaskModal.jsx";
 
 export const statusMap = {
-  todos: 'Todos',
-  inProgress: 'In Progress',
-  completed: 'Completed'
+  todos: 'Задачи',
+  inProgress: 'В работе',
+  completed: 'Выполнено'
 }
 
-const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms)) //Сомнительная фича с задержкой
+export const priorityMap = {
+  redStatus: 'Высокий',
+  yellowStatus: 'Средний',
+  greenStatus: 'Низкий'
+}
+
 
 const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
   const [loading, setLoading] = useState(false);
@@ -38,7 +43,6 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
   
   const handleShiftTask = async (newStatus) => {
     const oldStatus = shiftTask.status;
-    if(newStatus === oldStatus) return setShiftTask(null);
     const dClone = structuredClone(tabs);
     
     
@@ -47,6 +51,14 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
     
     //add it to the arr 2
     dClone[newStatus].unshift(task);
+    
+   /* //Попытка добавить приоритет
+    const [priority] = dClone[oldStatus].splice(shiftTask.index,1)
+    
+    dClone[newStatus].unshift((priority))
+    
+    */
+    
     
     try {
       await handleUpdateBoardData(dClone);
@@ -64,7 +76,7 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
     await updateBoardData(boardId, dClone);
     setTabs(dClone);
     updateLastUpdated();
-    setToastr('Board updated!')
+    setToastr('Доска обновлена!')
   }
   
   
@@ -84,7 +96,7 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
   }, [tabs]);
   
   const handleAddTask = async (text) => {
-    if (!text.trim()) return setToastr('Task cannot be empty!');
+    if (!text.trim()) return setToastr('Задача не может быть пустая!');
     const dClone = structuredClone(tabs)
     dClone[addTaskTo].unshift({ text, id: crypto.randomUUID() });
     try{

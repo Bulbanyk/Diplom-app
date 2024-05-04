@@ -1,5 +1,5 @@
 import { Stack, Typography, IconButton } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete.js"
+import DeleteIcon from "@mui/icons-material/Delete"
 import {Draggable} from "react-beautiful-dnd";
 
 

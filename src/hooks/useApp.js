@@ -64,7 +64,7 @@ const useApp = () => {
       throw err;
     }
   }
-  
+  //Создание доски
   const createBoard = async ({ name, color }) =>{
     try {
       const doc = await addDoc(boardsColRef, {
@@ -80,7 +80,7 @@ const useApp = () => {
         id: doc.id
       });
     } catch (err) {
-      setToastr("Error creating board");
+      setToastr("Ошибка создания доски");
       throw err;
     }
   };

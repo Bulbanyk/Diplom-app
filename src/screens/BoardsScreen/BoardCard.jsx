@@ -34,7 +34,7 @@ const BoardCard = ({name, color, createdAt, id}) => {
             <OpenIcon />
           </IconButton>
         </Stack>
-        <Typography variant="caption">Created at: {createdAt}</Typography>
+        <Typography variant="caption">Создано: {createdAt}</Typography>
       </Stack>
     </Grid>
   );
