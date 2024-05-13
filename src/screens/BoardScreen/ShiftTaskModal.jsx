@@ -4,12 +4,9 @@ import ModalHeader from "../../components/layout/ModalHeader.jsx";
 import {priorityMap, statusMap} from "./BoardInterface.jsx";
 
 
-const ShiftTaskModal = ({onClose, task, shiftTask, priority}) => {
+const ShiftTaskModal = ({onClose, task, shiftTask}) => {
   const [taskStatus, setTaskStatus] = useState(task.status)
-  //Новое поле
-/*
-  const [priorityStatus, setPriorityStatus] = useState(priority.status)
-*/
+  const [taskPriority, setTaskPriority] = useState(task.priority);
   
   return (
     <Dialog open fullWidth maxWidth="xs">
@@ -41,21 +38,22 @@ const ShiftTaskModal = ({onClose, task, shiftTask, priority}) => {
                 ))}
               </Stack>
           </Stack>
-          {/*<Stack>
+          <Stack>
             <Typography>Приоритет</Typography>
-            <Stack direction="row" spacing={1}>
-              {Object.entries(priorityMap).map(([status, label]) => (
+            <Stack direction='row' spacing={1}>
+              {Object.entries(priorityMap).map(([priority, label]) => (
                 <Chip
-                  onClick={() => setPriorityStatus(status)}
-                  variant={priorityStatus === status ? "filled" : "outlined"}
-                  key={status}
+                  onClick={() => setTaskPriority(priority)}
+                  variant={taskPriority === priority ? "filled" :
+                "outlined"}
+                  key={priority}
                   label={label}
                 />
               ))}
             </Stack>
-          </Stack>*/}
+          </Stack>
         </Stack>
-        <Button onClick={() => shiftTask(taskStatus)} variant="contained">Изменить задачу</Button>
+        <Button onClick={() => shiftTask(taskStatus, taskPriority)} variant="contained">Изменить задачу</Button>
       </Stack>
     </Dialog>
   );

@@ -9,6 +9,12 @@ export const colors = [
     "#D3D3D3"
 ];
 
+export const priorityColor = {
+    redStatus: "#B20000",
+    yellowStatus: "#FFFF00",
+    greenStatus: "#0a5c0a"
+}
+
 
 
 const theme = createTheme({

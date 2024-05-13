@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/AddCircleOutline.js"
 import Task from "./Task.jsx";
 import {memo} from "react";
 import Droppable from "../../components/utils/StrictModeDroppable.jsx";
+import {priorityMap} from "./BoardInterface.jsx";
 
 
 const BoardTab = ({
@@ -14,7 +15,6 @@ const BoardTab = ({
   openShiftTaskModal,
 }) => {
   console.log('Tab: ', name);
-  const isXs = useMediaQuery((theme) => theme.breakpoints.only("xs"));
   return (
     <Droppable droppableId={status}>
       {(provided) => (
@@ -41,18 +41,19 @@ const BoardTab = ({
           <Stack mt={3} spacing={2}>
             {tasks.map((task, index) => (
               <Task
-                onClick={isXs ? () =>
+                onClick={ () =>
                   openShiftTaskModal({
                     text:task.text,
                     index: index,
                     status: status,
-                  }): null
+                  })
               }
                 key={task.id}
                 text={task.text}
                 id={task.id}
                 removeTask={() => removeTask(status, task.id)}
                 index={index}
+                priority={priorityMap}
               />
             ))}
           </Stack>
