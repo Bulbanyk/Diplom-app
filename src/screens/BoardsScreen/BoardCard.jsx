@@ -29,7 +29,6 @@ const BoardCard = ({name, color, createdAt, id}) => {
               {name}
             </Typography>
           </Box>
-          
           <IconButton onClick={() => navigate(`/boards/${id}`)} size="small">
             <OpenIcon />
           </IconButton>

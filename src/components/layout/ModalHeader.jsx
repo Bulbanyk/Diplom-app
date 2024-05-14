@@ -1,6 +1,5 @@
 import {IconButton, Stack, Typography} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close.js"
-
+import CloseIcon from "@mui/icons-material/Close.js";
 
 const ModalHeader = ({title, onClose}) => {
     return (

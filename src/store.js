@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from 'zustand/middleware'
+import { devtools } from 'zustand/middleware';
 
 const store = (set) => ({
     loader: true,
@@ -21,8 +21,6 @@ const store = (set) => ({
         "setLoginStatus"
       ),
 });
-
-
 
 const useStore = create(devtools(store));
 

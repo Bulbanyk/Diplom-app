@@ -20,7 +20,6 @@ const AuthScreen = () => {
     const [showPositionField, setShowPositionField] = useState(false); // состояние для отслеживания показа поля должности
     const [form, setForm] = useState(initForm);
     const { setToastr } = useStore();
-    
     const authText = isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?";
     
     const handleChange = (event) =>

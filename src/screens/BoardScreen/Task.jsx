@@ -1,11 +1,8 @@
-import { Stack, Typography, IconButton } from "@mui/material";
+import {Stack, Typography, IconButton, Box, } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Draggable } from "react-beautiful-dnd";
-import {priorityColor} from "../../theme.js";
 
-
-const Task = ({ id, text, index, priority, removeTask, onClick }) => {
-
+const Task = ({ id, text, index, removeTask, onClick }) => {
   
   return (
     <Draggable draggableId={id} index={index}>

@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useState } from "react";
 import {Dialog, Stack, Typography, Box, TextField, Button} from "@mui/material";
 import ModalHeader from "../../components/layout/ModalHeader.jsx";
 import {colors} from "../../theme.js";
 import useApp from "../../hooks/useApp.js";
 import useStore from "../../store.js";
-
 
 const CreateBoardModal = ({ closeModal }) => {
   const { createBoard } = useApp()

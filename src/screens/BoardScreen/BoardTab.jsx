@@ -1,10 +1,8 @@
-import {Grid, IconButton, Stack, Typography, useMediaQuery} from "@mui/material";
-import AddIcon from "@mui/icons-material/AddCircleOutline.js"
+import {Grid, IconButton, Stack, Typography} from "@mui/material";
+import AddIcon from "@mui/icons-material/AddCircleOutline.js";
 import Task from "./Task.jsx";
 import {memo} from "react";
 import Droppable from "../../components/utils/StrictModeDroppable.jsx";
-import {priorityMap} from "./BoardInterface.jsx";
-
 
 const BoardTab = ({
   name,
@@ -12,7 +10,7 @@ const BoardTab = ({
   status,
   openAddTaskModal,
   removeTask,
-  openShiftTaskModal,
+  openShiftTaskModal
 }) => {
   console.log('Tab: ', name);
   return (
@@ -53,7 +51,6 @@ const BoardTab = ({
                 id={task.id}
                 removeTask={() => removeTask(status, task.id)}
                 index={index}
-                priority={priorityMap}
               />
             ))}
           </Stack>

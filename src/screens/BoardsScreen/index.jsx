@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Stack, Grid} from "@mui/material"
+import { Stack, Grid} from "@mui/material";
 import CreateBoardModal from "./CreateBoardModal.jsx";
 import TopBar from "./TopBar.jsx";
 import BoardCard from "./BoardCard.jsx";

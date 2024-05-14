@@ -9,8 +9,6 @@ const SnackbarManager = () => {
       open={!!toastrMsg}
       autoHideDuration={5000}
       onClose={() => setToastr('')}
-      
-      
     />
   );
 };

@@ -15,9 +15,10 @@ export const statusMap = {
 };
 
 export const priorityMap = {
-  redStatus: 'Высокий',
-  yellowStatus: 'Средний',
-  greenStatus: 'Низкий'
+  3: 'Высокий',
+  2: 'Средний',
+  1: 'Низкий',
+  0: 'Без статуса'
 };
 
 const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
@@ -37,9 +38,6 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
     (task) => setShiftTask(task),
     []
   );
-  
-  console.log({ shiftTask });
-  
   const handleShiftTask = async (newStatus, priority) => {
     const oldStatus = shiftTask.status;
     const dClone = structuredClone(tabs);
@@ -59,7 +57,6 @@ const BoardInterface = ({ boardData, boardId, updateLastUpdated }) => {
       setLoading(false);
     }
   };
-  
   
   const handleUpdateBoardData = async (dClone) => {
     setLoading(true);

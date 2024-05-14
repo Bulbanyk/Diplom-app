@@ -28,7 +28,7 @@ const Topbar = ({ openModal }) => {
             height: "25px",
           }}
           src={LogoImg}
-          alt="Flowboard"
+          alt="Logo"
         />
         <Stack direction="row" spacing={2}>
           {isXs ? (

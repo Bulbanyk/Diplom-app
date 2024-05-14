@@ -9,13 +9,12 @@ export const colors = [
     "#D3D3D3"
 ];
 
-export const priorityColor = {
-    redStatus: "#B20000",
-    yellowStatus: "#FFFF00",
-    greenStatus: "#0a5c0a"
-}
-
-
+export const priorityColor = [
+    "#828282",
+    "#0a5c0a",
+    "#FFFF00",
+    "#B20000"
+];
 
 const theme = createTheme({
     palette: {
@@ -68,4 +67,4 @@ const theme = createTheme({
     }
 });
 
-export default theme
+export default theme;

@@ -1,6 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
 import useStore from "../../store.js";
-import BoardTopbar from "./BoardTopbar.jsx"
+import BoardTopbar from "./BoardTopbar.jsx";
 import BoardInterface from "./BoardInterface.jsx";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import useApp from "../../hooks/useApp.js";
@@ -16,7 +16,6 @@ const BoardScreen = () => {
   const { boardId } = useParams()
   const { fetchBoard, deleteBoard } = useApp()
   const board = useMemo(() => boards.find(b => b.id === boardId), []);
-  
   const boardData = useMemo(() => data, [data])
   
   const handleDeleteBoard = useCallback(async () => {
@@ -27,7 +26,6 @@ const BoardScreen = () => {
     } catch (err){
       console.log(err)
       setLoading(false);
-      
     }
   });
   
